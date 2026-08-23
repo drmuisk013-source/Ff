@@ -3,6 +3,7 @@ package com.example.forgeclient.module;
 import com.example.forgeclient.module.combat.AimAssistModule;
 import com.example.forgeclient.module.combat.AutoBlockModule;
 import com.example.forgeclient.module.combat.KillAuraModule;
+import com.example.forgeclient.module.movement.ScaffoldModule;
 import com.example.forgeclient.module.render.ESPModule;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class ModuleManager {
         modules.add(new AimAssistModule());
         modules.add(new AutoBlockModule());
         modules.add(new ESPModule());
+        modules.add(new ScaffoldModule());
     }
 
     public List<Module> getModules() {

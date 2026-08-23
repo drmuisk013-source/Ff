@@ -10,10 +10,10 @@ import org.lwjgl.input.Keyboard;
 import java.util.List;
 
 public class AutoBlockModule extends Module {
-    private double range = 4.0;
+    private double range = 4.5;
 
     public AutoBlockModule() {
-        super("AutoBlock", "Automatically blocks with sword when targets are near", Category.COMBAT, Keyboard.KEY_B);
+        super("AutoBlock", "Automatically blocks with sword during combat", Category.COMBAT, Keyboard.KEY_B);
     }
 
     @Override
@@ -29,10 +29,8 @@ public class AutoBlockModule extends Module {
             mc.thePlayer.getDistanceToEntity(entity) <= range
         );
 
-        if (!targets.isEmpty()) {
-            if (!mc.thePlayer.isUsingItem()) {
-                mc.playerController.sendUseItem(mc.thePlayer, mc.theWorld, heldItem);
-            }
+        if (!targets.isEmpty() && !mc.thePlayer.isUsingItem()) {
+            mc.playerController.sendUseItem(mc.thePlayer, mc.theWorld, heldItem);
         }
     }
 }

@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 public class ScaffoldModule extends Module {
     public ScaffoldModule() {
-        super("Scaffold", "Automatically places blocks beneath player feet", Category.MOVEMENT, Keyboard.KEY_G);
+        super("Scaffold", "Automatically places blocks beneath player feet with motion control", Category.MOVEMENT, Keyboard.KEY_G);
     }
 
     @Override
@@ -28,13 +28,15 @@ public class ScaffoldModule extends Module {
             int prevSlot = mc.thePlayer.inventory.currentItem;
             mc.thePlayer.inventory.currentItem = slot;
 
-            mc.thePlayer.rotationPitch = 82.0f;
+            // Pitch & motion bypass
+            mc.thePlayer.rotationPitch = 81.5f;
+            mc.thePlayer.motionX *= 0.75;
+            mc.thePlayer.motionZ *= 0.75;
 
-            EnumFacing facing = EnumFacing.UP;
             BlockPos targetPos = underPlayer.down();
             if (!(mc.theWorld.getBlockState(targetPos).getBlock() instanceof BlockAir)) {
                 Vec3 hitVec = new Vec3(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5);
-                mc.playerController.onPlayerRightClick(mc.thePlayer, mc.theWorld, mc.thePlayer.getHeldItem(), targetPos, facing, hitVec);
+                mc.playerController.onPlayerRightClick(mc.thePlayer, mc.theWorld, mc.thePlayer.getHeldItem(), targetPos, EnumFacing.UP, hitVec);
                 mc.thePlayer.swingItem();
             }
 

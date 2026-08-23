@@ -1,6 +1,7 @@
 package com.example.forgeclient.proxy;
 
 import com.example.forgeclient.event.ClientEventHandler;
+import com.example.forgeclient.gui.HUD;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -24,6 +25,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerKeyBinding(toggleKey);
 
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new HUD());
     }
 
     @Override
